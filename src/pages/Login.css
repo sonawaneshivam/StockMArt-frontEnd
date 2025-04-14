@@ -1,0 +1,152 @@
+body {
+  background-color: #ffffff;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Full screen background */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 0vh;
+  background-color: #e0f7fa;
+  padding: 20px;
+  overflow: hidden; /* fully hide any overflow */
+  box-sizing: border-box;
+}
+
+/* Login Box with New Gradient Color */
+.login-box {
+  background: linear-gradient(to right, #7d8081, #556d8a);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 40px; /* tighten slightly from 400px */
+  text-align: center;
+  color: #fff;
+}
+
+/* Form input fields */
+.form-control {
+  border-radius: 4px !important; /* Rectangular look */
+  padding: 10px 9px; /* Inner spacing for neat appearance */
+ 
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+
+/* Focus effect */
+.form-control:focus {
+  border-color: #00c6ff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 198, 255, 0.25);
+}
+
+/* Password eye icon styling */
+.input-group-text.password-eye {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  border-radius: 0 25px 25px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 16px;
+  font-size: 1.1rem;
+}
+
+.password-eye:hover {
+  color: #ffd700;
+  cursor: pointer;
+}
+
+/* Login buttons */
+button {
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: #00c6ff;
+  color: #e8dfdf;
+}
+
+button:active {
+  background-color: #0072ff;
+}
+
+button:disabled {
+  background-color: #eeeded;
+  cursor: not-allowed;
+}
+/* Password field container with icon inside */
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #3b3b3b;
+  font-size: 1.2rem;
+  z-index: 2;
+}
+
+/* Optional hover effect */
+.password-toggle-icon:hover {
+  color: #ffd700;
+}
+
+/* Responsive Styling for Mobile */
+@media (max-width: 576px) {
+  .login-box {
+    padding: 30px;
+    width: 100%;
+    max-width: 90%;
+  }
+  .login-btn {
+    padding: 12px;
+  }
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: gray; /* <-- changed from white to gray */
+  font-size: 1.2rem;
+  z-index: 2;
+}
+.password-toggle-icon:hover {
+  color: #434340; /* gold on hover */
+}
+.chnage{
+  color:rgb(213, 224, 228)
+  
+}
+.chnage:hover{
+  color:rgb(37, 21, 219)
+}
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 1rem;
+}

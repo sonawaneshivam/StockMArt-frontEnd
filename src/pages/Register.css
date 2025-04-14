@@ -1,0 +1,105 @@
+/* src/pages/Register.css */
+
+.login-wrapper {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ececec, #0f7674);
+  padding: 20px;
+}
+
+.login-box {
+  background-color: #212529;
+  padding: 30px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.login-box input {
+  background-color: #f9f9f9;
+  border: none;
+  color: #0f0e0e;
+  margin-bottom: 1.5rem; /* Space between input fields */
+}
+
+.login-box input::placeholder {
+  color: #bbb;
+}
+
+.login-btn {
+  background: #0d6efd;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #7a7777;
+  transition: color 0.3s ease;
+}
+
+.password-toggle-icon:hover {
+  color: #3b3b3b;
+}
+
+.input-group-icon {
+  position: relative;
+  margin-bottom: 1.6rem;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #6c757d;
+  z-index: 2;
+}
+
+.icon-input {
+  padding-left: 40px !important;
+}
+
+.error-message {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  animation: slideUp 0.3s ease-out;
+}
+
+.input-icon-error {
+  margin-right: 5px;
+  color: red;
+  animation: iconSlideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconSlideUp {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
