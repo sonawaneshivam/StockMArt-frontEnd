@@ -8,8 +8,10 @@
 .carousel-image {
   object-fit: cover; /* Ensures the image covers the entire container */
   width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  /* height: 100%; Full height */
+  max-height: 500px;
 }
+
 
 /* Optional: Smooth transition for carousel item changes */
 .carousel-item {
