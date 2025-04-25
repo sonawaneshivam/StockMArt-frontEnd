@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { loginUser } from "../services/userService";
 import "./Login.css";
 
-
-
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -26,13 +24,13 @@ const Login = () => {
 
     if (!username || !password) {
       setError("Please enter both username and password.");
+      setTimeout(() => setError(""), 3000); // Clear error after 2 seconds
       setLoading(false);
       return;
     }
 
     try {
       const role = (await loginUser(username, password)).toUpperCase();
-
 
       window.localStorage.setItem("userRole", role);
       window.localStorage.setItem("isLoggedIn", "true");
@@ -44,10 +42,12 @@ const Login = () => {
         navigate("/user-dashboard");
       } else {
         setError("Unknown role received from server.");
+        setTimeout(() => setError(""), 2000);
       }
     } catch (err) {
       console.error(err);
       setError("Invalid username or password.");
+      setTimeout(() => setError(""), 2000); // Clear error after 2 seconds
     } finally {
       setLoading(false);
     }

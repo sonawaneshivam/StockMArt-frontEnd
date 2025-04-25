@@ -69,7 +69,7 @@ const NavigationBar = ({ onLogout }) => {
                   to="/admin-dashboard"
                   className={({ isActive }) => `nav-hover nav-link ${isActive ? "active-link" : ""}`}
                 >
-                  Admin Panel
+                  Admin_dashbord
                 </NavLink>
                 <NavLink
                   to="/Category"
@@ -81,7 +81,7 @@ const NavigationBar = ({ onLogout }) => {
             )}
 
             {isLoggedIn && (
-              <div className=" mt-2 w-100 d-flex justify-content-center">
+              <div className=" mt-2 w-100 d-flex justify-content-center align-items-center">
               <Button
                 variant="outline-light"
                 size="sm"
