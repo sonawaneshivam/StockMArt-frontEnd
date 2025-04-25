@@ -12,7 +12,7 @@ import UserDashboard from "./pages/UserDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRout from "./components/ProtectedRout";
 import Serach from "./pages/user/Serach";
-import Categories from "./pages/admin/Categories";
+import Category from "./pages/admin/Category"; 
 
 function App() {
   const navigate = useNavigate();
@@ -41,18 +41,18 @@ function App() {
 
 
 
-        <Route element={<ProtectedRout></ProtectedRout>}>
+        <Route element={<ProtectedRout />}>
         <Route path="/login" element={<Navigate to="/" />} />
         <Route path="/register" element={<Navigate to="/" />} />
         {userRole !=="ADMIN" ?(
           <>
           <Route path="/user-dashboard" element={<UserDashboard /> }/>
-          <Route path="/search" element={<Serach></Serach>} />
+          <Route path="/search" element={<Serach />} />
           </>
         ):(
           <>
-          <Route path="/admin-dashboard" element={<AdminDashboard></AdminDashboard>}/>
-          <Route pathe="/Categories" element={<Categories></Categories>} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />}/>
+          <Route path="/Category" element={<Category />} />
           </>
         )}
         

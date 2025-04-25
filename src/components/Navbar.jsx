@@ -5,8 +5,8 @@ import { FaShoppingCart } from "react-icons/fa"; // <- cart icon
 import "./Navbar.css";
 
 const NavigationBar = ({ onLogout }) => {
-  // Get role and isLoggedIn from localStorage
-  const role = window.localStorage.getItem("userRole");
+  
+  const role = window.localStorage.getItem("userRole")?.toUpperCase();
   const isLoggedIn = window.localStorage.getItem("isLoggedIn") === "true";
 
   return (
@@ -21,15 +21,16 @@ const NavigationBar = ({ onLogout }) => {
         <Navbar.Toggle aria-controls="main-navbar" />
         <Navbar.Collapse id="main-navbar" className="justify-content-end">
           <Nav className="align-items-center">
-            <NavLink
-              to="/"
-              className={({ isActive }) => `nav-hover nav-link ${isActive ? "active-link" : ""}`}
-            >
-              Home
-            </NavLink>
+
 
             {!isLoggedIn && (
               <>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => `nav-hover nav-link ${isActive ? "active-link" : ""}`}
+                >
+                  Home
+                </NavLink>
                 <NavLink
                   to="/login"
                   className={({ isActive }) => `nav-hover nav-link ${isActive ? "active-link" : ""}`}
@@ -71,7 +72,7 @@ const NavigationBar = ({ onLogout }) => {
                   Admin Panel
                 </NavLink>
                 <NavLink
-                  to="/categories"
+                  to="/Category"
                   className={({ isActive }) => `nav-hover nav-link ${isActive ? "active-link" : ""}`}
                 >
                   Categories
@@ -80,16 +81,18 @@ const NavigationBar = ({ onLogout }) => {
             )}
 
             {isLoggedIn && (
-              <div className="mt-1 w-100 d-flex justify-content-center">
-                <button variant ="outline-light"
+              <div className=" mt-2 w-100 d-flex justify-content-center">
+              <Button
+                variant="outline-light"
                 size="sm"
-                onClick={()=>{
+                onClick={() => {
                   onLogout();
-                  handelNavItemClick();
-                }}>
-                  Logout
-                </button>
-              </div>
+                  handleNavItemClick(); // Close sidebar on logout
+                }}
+              >
+                Logout
+              </Button>
+            </div>
             )}
           </Nav>
         </Navbar.Collapse>
