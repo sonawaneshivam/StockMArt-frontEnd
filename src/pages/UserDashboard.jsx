@@ -11,7 +11,7 @@ const UserDashboard = () => {
       <h2>User Dashboard</h2>
       <p>Welcome! Check your bills, stock, and reports here.</p>
     </div>
-   
+    
     </>
   );
 };

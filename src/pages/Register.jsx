@@ -24,7 +24,7 @@ const Register = () => {
     validationSchema: Yup.object({
       firstName: Yup.string().required("First name is required"),
       lastName: Yup.string().required("Last name is required"),
-      email: Yup.string().email("Invalid email").required("Email is required"),
+      email: Yup.string().email("Invalid email").matches(/^[a-zA-Z0-9._%+-]+@gmail\.com$/, "Must be a Gmail address").required("Email is required"),
       phone: Yup.string().matches(/^\d{10}$/, "Phone must be 10 digits").required("Phone is required"),
       username: Yup.string().required("Username is required"),
       password: Yup.string().min(6, "Minimum 6 characters").required("Password is required"),
@@ -51,7 +51,7 @@ const Register = () => {
         formik.setErrors({});
       }, 2000);
 
-      return () => clearTimeout(timer); // Clean up the timeout on component unmount or re-render
+      return () => clearTimeout(timer);
     }
   }, [formik.errors, formik.touched]);
 
@@ -66,123 +66,140 @@ const Register = () => {
         <h2 className="text-center mb-4">Register</h2>
         <form onSubmit={formik.handleSubmit}>
           <div className="row mb-3">
-            <div className="col position-relative">
-              {/* <FaUser className="input-icon" /> */}
-              <input
-                type="text"
-                name="firstName"
-                className="form-control icon-input"
-                placeholder="First Name"
-                value={formik.values.firstName}
-                onChange={formik.handleChange}
-              />
+            <div className="col">
+              <div className="input-group-icon">
+                <FaUser className="input-icon" />
+                <input
+                  type="text"
+                  name="firstName"
+                  className="form-control icon-input"
+                  placeholder="First Name"
+                  value={formik.values.firstName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+              </div>
               {formik.touched.firstName && formik.errors.firstName && (
                 <div className="error-message">
                   <FaUser className="input-icon-error" />
-                  <small className="text-danger">{formik.errors.firstName}</small>
+                  <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.firstName}</small>
                 </div>
               )}
             </div>
-            <div className="col position-relative">
-              {/* <FaUser className="input-icon" /> */}
-              <input
-                type="text"
-                name="lastName"
-                className="form-control icon-input"
-                placeholder="Last Name"
-                value={formik.values.lastName}
-                onChange={formik.handleChange}
-              />
+            <div className="col">
+              <div className="input-group-icon">
+                <FaUser className="input-icon" />
+                <input
+                  type="text"
+                  name="lastName"
+                  className="form-control icon-input"
+                  placeholder="Last Name"
+                  value={formik.values.lastName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+              </div>
               {formik.touched.lastName && formik.errors.lastName && (
                 <div className="error-message">
                   <FaUser className="input-icon-error" />
-                  <small className="text-danger">{formik.errors.lastName}</small>
+                  <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.lastName}</small>
                 </div>
               )}
             </div>
           </div>
 
-          <div className="mb-3 position-relative">
-            <FaEnvelope className="input-icon" />
-            <input
-              type="email"
-              name="email"
-              className="form-control icon-input"
-              placeholder="Email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-            />
+          <div className="mb-3">
+            <div className="input-group-icon">
+              <FaEnvelope className="input-icon" />
+              <input
+                type="email"
+                name="email"
+                className="form-control icon-input"
+                placeholder="Email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </div>
             {formik.touched.email && formik.errors.email && (
               <div className="error-message">
                 <FaEnvelope className="input-icon-error" />
-                <small className="text-danger">{formik.errors.email}</small>
+                <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.email}</small>
               </div>
             )}
           </div>
 
-          <div className="mb-3 position-relative">
-            <FaPhone className="input-icon" />
-            <input
-              type="text"
-              name="phone"
-              className="form-control icon-input"
-              placeholder="Phone Number"
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-            />
+          <div className="mb-3">
+            <div className="input-group-icon">
+              <FaPhone className="input-icon" />
+              <input
+                type="text"
+                name="phone"
+                className="form-control icon-input"
+                placeholder="Phone Number"
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </div>
             {formik.touched.phone && formik.errors.phone && (
               <div className="error-message">
                 <FaPhone className="input-icon-error" />
-                <small className="text-danger">{formik.errors.phone}</small>
+                <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.phone}</small>
               </div>
             )}
           </div>
 
-          <div className="mb-3 position-relative">
-            <FaIdBadge className="input-icon" />
-            <input
-              type="text"
-              name="username"
-              className="form-control icon-input"
-              placeholder="Username"
-              value={formik.values.username}
-              onChange={formik.handleChange}
-            />
+          <div className="mb-3">
+            <div className="input-group-icon">
+              <FaIdBadge className="input-icon" />
+              <input
+                type="text"
+                name="username"
+                className="form-control icon-input"
+                placeholder="Username"
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </div>
             {formik.touched.username && formik.errors.username && (
               <div className="error-message">
                 <FaIdBadge className="input-icon-error" />
-                <small className="text-danger">{formik.errors.username}</small>
+                <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.username}</small>
               </div>
             )}
           </div>
 
           <div className="mb-3 position-relative">
-            <FaLock className="input-icon" />
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              className="form-control icon-input pe-5"
-              placeholder="Password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            />
-            <span className="password-toggle-icon" onClick={togglePasswordVisibility}>
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </span>
+            <div className="input-group-icon">
+              <FaLock className="input-icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                className="form-control icon-input pe-5"
+                placeholder="Password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              <span className="password-toggle-icon" onClick={togglePasswordVisibility}>
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
             {formik.touched.password && formik.errors.password && (
               <div className="error-message">
                 <FaLock className="input-icon-error" />
-                <small className="text-danger">{formik.errors.password}</small>
+                <small className="text-danger" style={{fontWeight:"bold"}}  >{formik.errors.password}</small>
               </div>
             )}
           </div>
-
+            
           <button type="submit" className="btn btn-primary w-100 login-btn">
             Register
           </button>
         </form>
       </motion.div>
-
       <ToastContainer position="top-center" autoClose={6000} />
     </div>
   );
