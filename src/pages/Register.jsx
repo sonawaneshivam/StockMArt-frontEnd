@@ -14,10 +14,10 @@ const Register = () => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      first_Name: "",
+      last_Name: "",
       email: "",
-      phone: "",
+      phone_number: "",
       username: "",
       password: "",
     },
@@ -71,7 +71,7 @@ const Register = () => {
                 <FaUser className="input-icon" />
                 <input
                   type="text"
-                  name="firstName"
+                  name="first_Name"
                   className="form-control icon-input"
                   placeholder="First Name"
                   value={formik.values.firstName}
@@ -91,7 +91,7 @@ const Register = () => {
                 <FaUser className="input-icon" />
                 <input
                   type="text"
-                  name="lastName"
+                  name="last_Name"
                   className="form-control icon-input"
                   placeholder="Last Name"
                   value={formik.values.lastName}
@@ -134,7 +134,7 @@ const Register = () => {
               <FaPhone className="input-icon" />
               <input
                 type="text"
-                name="phone"
+                name="phone_number"
                 className="form-control icon-input"
                 placeholder="Phone Number"
                 value={formik.values.phone}
