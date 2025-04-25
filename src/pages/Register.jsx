@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { FaEye, FaEyeSlash, FaUser, FaEnvelope, FaPhone, FaLock, FaIdBadge } from "react-icons/fa";
+import {
+  FaEye, FaEyeSlash, FaUser, FaEnvelope,
+  FaPhone, FaLock, FaIdBadge
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,28 +13,47 @@ import "./Register.css";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
+  const togglePasswordVisibility = () => setShowPassword(prev => !prev);
 
   const formik = useFormik({
     initialValues: {
-      first_Name: "",
-      last_Name: "",
+      firstName: "",
+      lastName: "",
       email: "",
-      phone_number: "",
+      phone: "",
       username: "",
       password: "",
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("First name is required"),
       lastName: Yup.string().required("Last name is required"),
-      email: Yup.string().email("Invalid email").matches(/^[a-zA-Z0-9._%+-]+@gmail\.com$/, "Must be a Gmail address").required("Email is required"),
-      phone: Yup.string().matches(/^\d{10}$/, "Phone must be 10 digits").required("Phone is required"),
+      email: Yup.string()
+        .email("Invalid email")
+        .matches(/^[a-zA-Z0-9._%+-]+@gmail\.com$/, "Must be a Gmail address")
+        .required("Email is required"),
+      phone: Yup.string()
+        .matches(/^\d{10}$/, "Phone must be 10 digits")
+        .required("Phone is required"),
       username: Yup.string().required("Username is required"),
-      password: Yup.string().min(6, "Minimum 6 characters").required("Password is required"),
+      password: Yup.string()
+        .min(6, "Minimum 6 characters")
+        .required("Password is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
+      const formattedValues = {
+        first_name: values.firstName,
+        last_name: values.lastName,
+        email: values.email,
+        phone_number: values.phone,
+        username: values.username,
+        password: values.password,
+        role: "User", // default role
+        address: "",  // optional, can be filled later
+        profile_picture_url: "" // optional
+      };
+
       try {
-        const res = await userService(values);
+        await userService(formattedValues);
         toast.success("Registered successfully!");
         resetForm();
       } catch (error) {
@@ -40,17 +62,16 @@ const Register = () => {
     },
   });
 
-  // Clear the error and touched states after 2 seconds
+  // Auto-clear errors after 2 seconds
   useEffect(() => {
     const hasErrors = Object.keys(formik.errors).length > 0;
     const hasTouched = Object.keys(formik.touched).length > 0;
 
     if (hasErrors && hasTouched) {
       const timer = setTimeout(() => {
-        formik.setTouched({});
         formik.setErrors({});
+        formik.setTouched({});
       }, 2000);
-
       return () => clearTimeout(timer);
     }
   }, [formik.errors, formik.touched]);
@@ -71,7 +92,7 @@ const Register = () => {
                 <FaUser className="input-icon" />
                 <input
                   type="text"
-                  name="first_Name"
+                  name="firstName"
                   className="form-control icon-input"
                   placeholder="First Name"
                   value={formik.values.firstName}
@@ -82,16 +103,17 @@ const Register = () => {
               {formik.touched.firstName && formik.errors.firstName && (
                 <div className="error-message">
                   <FaUser className="input-icon-error" />
-                  <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.firstName}</small>
+                  <small className="text-danger fw-bold">{formik.errors.firstName}</small>
                 </div>
               )}
             </div>
+
             <div className="col">
               <div className="input-group-icon">
                 <FaUser className="input-icon" />
                 <input
                   type="text"
-                  name="last_Name"
+                  name="lastName"
                   className="form-control icon-input"
                   placeholder="Last Name"
                   value={formik.values.lastName}
@@ -102,7 +124,7 @@ const Register = () => {
               {formik.touched.lastName && formik.errors.lastName && (
                 <div className="error-message">
                   <FaUser className="input-icon-error" />
-                  <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.lastName}</small>
+                  <small className="text-danger fw-bold">{formik.errors.lastName}</small>
                 </div>
               )}
             </div>
@@ -124,7 +146,7 @@ const Register = () => {
             {formik.touched.email && formik.errors.email && (
               <div className="error-message">
                 <FaEnvelope className="input-icon-error" />
-                <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.email}</small>
+                <small className="text-danger fw-bold">{formik.errors.email}</small>
               </div>
             )}
           </div>
@@ -134,7 +156,7 @@ const Register = () => {
               <FaPhone className="input-icon" />
               <input
                 type="text"
-                name="phone_number"
+                name="phone"
                 className="form-control icon-input"
                 placeholder="Phone Number"
                 value={formik.values.phone}
@@ -145,7 +167,7 @@ const Register = () => {
             {formik.touched.phone && formik.errors.phone && (
               <div className="error-message">
                 <FaPhone className="input-icon-error" />
-                <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.phone}</small>
+                <small className="text-danger fw-bold">{formik.errors.phone}</small>
               </div>
             )}
           </div>
@@ -166,7 +188,7 @@ const Register = () => {
             {formik.touched.username && formik.errors.username && (
               <div className="error-message">
                 <FaIdBadge className="input-icon-error" />
-                <small className="text-danger" style={{fontWeight:"bold"}}>{formik.errors.username}</small>
+                <small className="text-danger fw-bold">{formik.errors.username}</small>
               </div>
             )}
           </div>
@@ -190,11 +212,11 @@ const Register = () => {
             {formik.touched.password && formik.errors.password && (
               <div className="error-message">
                 <FaLock className="input-icon-error" />
-                <small className="text-danger" style={{fontWeight:"bold"}}  >{formik.errors.password}</small>
+                <small className="text-danger fw-bold">{formik.errors.password}</small>
               </div>
             )}
           </div>
-            
+
           <button type="submit" className="btn btn-primary w-100 login-btn">
             Register
           </button>
