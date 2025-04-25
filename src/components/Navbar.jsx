@@ -80,9 +80,16 @@ const NavigationBar = ({ onLogout }) => {
             )}
 
             {isLoggedIn && (
-              <Button variant="outline-light" size="sm" onClick={onLogout} className="ms-3">
-                Logout
-              </Button>
+              <div className="mt-1 w-100 d-flex justify-content-center">
+                <button variant ="outline-light"
+                size="sm"
+                onClick={()=>{
+                  onLogout();
+                  handelNavItemClick();
+                }}>
+                  Logout
+                </button>
+              </div>
             )}
           </Nav>
         </Navbar.Collapse>

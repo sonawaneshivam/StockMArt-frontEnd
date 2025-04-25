@@ -4,7 +4,8 @@ import { FaEye, FaEyeSlash, FaUser, FaLock } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { loginUser } from "../services/userService";
 import "./Login.css";
-// import { loginImage } from '../assets/images/login.png'
+
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,7 +31,8 @@ const Login = () => {
     }
 
     try {
-      const role = await loginUser(username, password);
+      const role = (await loginUser(username, password)).toUpperCase();
+
 
       window.localStorage.setItem("userRole", role);
       window.localStorage.setItem("isLoggedIn", "true");
@@ -128,11 +130,6 @@ const Login = () => {
               </p>
             </div>
           </form>
-          <div className="img-fluid">
-            {/* <img src={loginImage} alt="Login Image" /> */}
-            {/* <img src='../assets/images/login.png' alt="Login Image" /> */}
-
-          </div>
         </motion.div>
       </div>
     </div>
