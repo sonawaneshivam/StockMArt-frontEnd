@@ -27,32 +27,16 @@ const Home = () => {
         <Col xs={12} md={10}>
           <Carousel fade className="shadow rounded overflow-hidden">
             {carouselItems.map((item, index) => (
-              <Carousel.Item key={index}>
-                <Row className="g-0 align-items-center">
-                  {/* Left Side: Fixed Image */}
-                  <Col xs={12} md={6} className="carousel-image-container">
-                    <img
-                      src={item.image}
-                      alt={`Slide ${index + 1}`}
-                      className="w-100 h-100 carousel-image"
-                    />
-                  </Col>
-
-                  {/* Right Side: Quote with consistent background */}
-                  <Col
-                    xs={12} md={6}
-                    className="d-flex justify-content-center align-items-center bg-white text-center px-4 py-4 fixed-bg"
-                    style={{
-                      height: "100%", // Full height of the column
-                      borderTopRightRadius: "0.5rem",
-                      borderBottomRightRadius: "0.5rem",
-                    }}
-                  >
-                    <div>
-                      <h3 className="text-dark fw-bold">{item.caption}</h3>
-                    </div>
-                  </Col>
-                </Row>
+              <Carousel.Item key={index} className="position-relative">
+                <img
+                  src={item.image}
+                  alt={`Slide ${index + 1}`}
+                  className="d-block w-100 carousel-image"
+                  style={{ height: "500px", objectFit: "cover" }}
+                />
+                <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded">
+                  <h3 className="text-white fw-bold">{item.caption}</h3>
+                </Carousel.Caption>
               </Carousel.Item>
             ))}
           </Carousel>
