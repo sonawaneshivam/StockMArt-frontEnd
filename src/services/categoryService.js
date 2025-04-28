@@ -1,9 +1,12 @@
 import axios from "axios";
 
 const BASE_URL = "http://localhost:8080/category";
-
-export const addCategory = (category) =>
-  axios.post(`${BASE_URL}/add`, category);
+export const addCategory = async (formData) => {
+  const response = await axios.post(`${BASE_URL}/add`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return response.data;
+};
 
 export const getAllCategories = () =>
   axios.get(`${BASE_URL}/showAll`);
