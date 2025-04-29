@@ -151,7 +151,7 @@ const Category = () => {
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center vh-100">
-     
+
       {/* 🔍 Search Input */}
       <Form.Control
         type="text"
@@ -162,41 +162,46 @@ const Category = () => {
       />
 
       <div className="mt-4 w-100">
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Category Name</th>
-              <th>Image</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentCategories.length === 0 ? (
+        {/* Adding margin to the left and right of the table */}
+        <div className="container">
+          <Table striped bordered hover className="mt-4">
+            <thead>
               <tr>
-                <td colSpan="3" className="text-center">No categories found.</td>
+                <th>Category Name</th>
+                <th>Image</th>
+                <th>Actions</th>
               </tr>
-            ) : (
-              currentCategories.map((category) => (
-                <tr key={category.category_id}>
-                  <td>{category.category_name}</td>
-                  <td>
-                    <img
-                      src={category.image_url}
-                      alt={category.category_name}
-                      style={{ width: '50px', height: '50px', objectFit: 'cover' }}
-                    />
-                  </td>
-                  <td>
-                    <Button variant="warning" className="me-2" onClick={() => handleShow(category)}>Edit</Button>
-                    <Button variant="danger" onClick={() => handleDelete(category.category_id)}>Delete</Button>
-                  </td>
+            </thead>
+            <tbody>
+              {currentCategories.length === 0 ? (
+                <tr>
+                  <td colSpan="3" className="text-center">No categories found.</td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </Table>
+              ) : (
+                currentCategories.map((category) => (
+                  <tr key={category.category_id}>
+                    <td>{category.category_name}</td>
+                    <td>
+                      <img
+                        src={category.image_url}
+                        alt={category.category_name}
+                        style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+                      />
+                    </td>
+                    <td>
+                      <Button variant="warning" className="me-2" onClick={() => handleShow(category)}>Edit</Button>
+                      <Button variant="danger" onClick={() => handleDelete(category.category_id)}>Delete</Button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </Table>
+        </div>
       </div>
+
       <Button variant="primary" onClick={() => handleShow()}>Add Category</Button>
+
       {/* 🔢 Pagination */}
       <nav>
         <ul className="pagination mt-4">
