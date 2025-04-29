@@ -2,8 +2,7 @@
 import axios from "axios";
 
 const userService = async (userData) => {
-  const response = await axios.post("http://localhost:8080/register/details", userData);
-  return response.data;
+  return await axios.post("http://localhost:8080/register/details", userData);
 };
 
 export default userService;
