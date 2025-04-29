@@ -8,11 +8,38 @@ export const addCategory = async (formData) => {
   return response.data;
 };
 
-export const getAllCategories = () =>
-  axios.get(`${BASE_URL}/showAll`);
+export const getAllCategories = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/showAll`);
+    console.log("Fetched Categories:", response.data);  
+    return response.data; 
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    throw error;  // Throw the error so you can handle it in the component
+  }
+};
 
-export const deleteCategory = (id) =>
-  axios.delete(`${BASE_URL}/delete`, { params: { id } });
+export const deleteCategory = async (categoryId) => {
+  try {
+    // Make sure to send the categoryId as a query parameter in the URL
+    const response = await axios.delete(`${BASE_URL}/delete?id=${categoryId}`);
+    return response;
+  } catch (error) {
+    console.error("Error deleting category", error);
+    throw error;
+  }
+};
 
-export const updateCategory = (category) =>
-  axios.put(`${BASE_URL}/update`, category);
+export const updateCategory = async (id, formData) => {
+  try {
+    const response = await fetch(`${BASE_URL}/update?id=${id}`, {
+      method: 'PUT', // Ensure it's a PUT request
+      body: formData,
+    });
+    return await response.data;
+  } catch (error) {
+    console.error("Error updating category:", error);
+    throw error;
+  }
+};
+
