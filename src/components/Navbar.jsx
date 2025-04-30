@@ -77,11 +77,18 @@ const NavigationBar = ({ onLogout }) => {
                 >
                   Categories
                 </NavLink>
+                
+                <NavLink
+                  to="/Product"
+                  className={({ isActive }) => `nav-hover nav-link ${isActive ? "active-link" : ""}`}
+                >
+                  Produts
+                </NavLink>
               </>
             )}
 
             {isLoggedIn && (
-              <div className=" mt-2 w-100 d-flex justify-content-center align-items-center">
+              <div className=" mt-2  w-100 d-flex justify-content-center align-items-center">
               <Button
                 variant="outline-light"
                 size="sm"

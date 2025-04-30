@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRout from "./components/ProtectedRout";
 import Serach from "./pages/user/Serach";
 import Category from "./pages/admin/Category"; 
+import Product from "./pages/admin/Product";
 
 function App() {
   const navigate = useNavigate();
@@ -48,11 +49,13 @@ function App() {
           <>
           <Route path="/user-dashboard" element={<UserDashboard /> }/>
           <Route path="/search" element={<Serach />} />
+          
           </>
         ):(
           <>
           <Route path="/admin-dashboard" element={<AdminDashboard />}/>
           <Route path="/Category" element={<Category />} />
+          <Route path="/Product" element={<Product />} />
           </>
         )}
         
