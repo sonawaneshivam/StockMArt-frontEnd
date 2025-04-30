@@ -67,14 +67,14 @@ const Category = () => {
 
     try {
       if (editCategoryId && !isNaN(editCategoryId)) {
-        const response = await updateCategory(editCategoryId, formData);
+        await updateCategory(editCategoryId, formData);
         Swal.fire({
           icon: 'success',
           title: 'Category Updated',
           text: 'Category was updated successfully.',
         });
       } else {
-        const response = await addCategory(formData);
+        await addCategory(formData);
         Swal.fire({
           icon: 'success',
           title: 'Category Added',
@@ -203,17 +203,34 @@ const Category = () => {
       <Button variant="primary" onClick={() => handleShow()}>Add Category</Button>
 
       {/* 🔢 Pagination */}
-      <nav>
-        <ul className="pagination mt-4">
-          {pageNumbers.map((number) => (
-            <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
-              <Button onClick={() => setCurrentPage(number)} className="page-link">
-                {number}
-              </Button>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <div className="d-flex justify-content-center mt-4">
+        <Button
+          variant="primary"
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="me-2"
+        >
+          Prev
+        </Button>
+        {pageNumbers.map((number) => (
+          <Button
+            key={number}
+            variant={number === currentPage ? 'primary' : 'outline-primary'}
+            onClick={() => setCurrentPage(number)}
+            className="me-2"
+          >
+            {number}
+          </Button>
+        ))}
+        <Button
+          variant="primary"
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={currentPage === pageNumbers.length}
+        >
+          Next
+        </Button>
+      </div>
+
 
       {/* Modal */}
       <Modal show={show} onHide={handleClose} centered>

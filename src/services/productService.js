@@ -36,3 +36,13 @@ export const getAllProducts = async () => {
       throw error;
     }
   };
+
+  export const deleteProduct = async (id) => {
+    try {
+      const response = await axios.delete(`${BASE_URL}/product/delete?id=${id}`);
+      return response.data; // Returns the response message from the backend
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      throw error; // Rethrow the error to handle it in the component
+    }
+  };
