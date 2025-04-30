@@ -26,3 +26,13 @@ export const addProduct = async (productData) => {
     throw error;
   }
 };
+
+export const getAllProducts = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/product/showAll`);
+      return response.data; // This should be a list of Stock (product) objects
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      throw error;
+    }
+  };
